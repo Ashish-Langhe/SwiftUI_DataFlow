@@ -7,13 +7,32 @@
 
 import SwiftUI
 
+class ViewModel: ObservableObject {
+    init(){}
+    
+    @Published var count = 16500
+    var name = "Avengers"
+    
+    var dateCreated = Date()
+}
+
 struct ContentView: View {
+    
+    @ObservedObject var viewModel = ViewModel()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("\(viewModel.count)")
+                .font(.system(.title))
+            Text("\(viewModel.name)")
+                .font(.system(.largeTitle))
+                .padding()
+            Text("Subscribers")
+                .font(.system(.title))
+                .padding()
+            Button("Add Subscriber") {
+                viewModel.count += 1
+            }
         }
         .padding()
     }
