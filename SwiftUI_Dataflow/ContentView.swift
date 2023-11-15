@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Observation
 
-class ViewModel: ObservableObject {
+@Observable
+class ViewModel {
     init(){}
     
-    @Published var count = 16500
+    var count = 16500
     var name = "Avengers"
     
     var dateCreated = Date()
@@ -18,7 +20,7 @@ class ViewModel: ObservableObject {
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel = ViewModel()
+    var viewModel = ViewModel()
     
     var body: some View {
         VStack {
